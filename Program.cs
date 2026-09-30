@@ -14,8 +14,13 @@ while (true)
     Console.WriteLine("5. Avsluta");
     Console.Write("Välj: ");
 
-// the choice should be recived as a string. int choice is the number the user chooses to type 
-    int choice = int.Parse(Console.ReadLine());
+// the value stores in choice variable 
+    int choice;
+// changed to a tryParse & loop until the user has entered a valid option from menu/not a letter
+    while (!int.TryParse(Console.ReadLine(), out choice) || choice > 5 || choice< 1)
+{
+    Console.Write("Ange ett heltal eller en siffra från menyn: ");
+}
 
 // what the differents choices lead to
     if (choice == 1)

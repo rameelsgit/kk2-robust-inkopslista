@@ -70,7 +70,7 @@ class ShoppingList
 
         try
         {
-            File.WriteAllText(path, string.Join("\r\n", lines) + "\r\n");
+            File.WriteAllText(path, string.Join("\r\n", lines));
         }
         catch
         {
@@ -82,8 +82,7 @@ class ShoppingList
     // Reads the file back into the list.
     public void Load()
     {
-        string text = File.ReadAllText(path);
-        string[] lines = text.Split('\n');
+        string[] lines = File.ReadAllLines(path);
 
         foreach (string line in lines)
         {

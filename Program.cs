@@ -28,8 +28,13 @@ while (true)
         Console.Write("Namn: ");
         string name = Console.ReadLine();
         Console.Write("Pris: ");
-        int price = int.Parse(Console.ReadLine());
-        list.Add(new Item(name, price)); // adds the name and price to the list
+        // changed int.parse to try.parse like previously to check for int without crassching
+        // & made sure user cant input a negative int 
+        int price;
+        while (!int.TryParse(Console.ReadLine(), out price)|| price < 0 )
+        {
+        Console.Write("Skriv priset med siffror eller positivt tal: ");
+        }        list.Add(new Item(name, price)); // adds the name and price to the list
     }
     else if (choice == 2)
     {

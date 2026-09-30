@@ -9,4 +9,11 @@
    HUR JAG LÖSTE: Jag bytte till int.TryParse eftersom den testar om det är ett heltal utan att krascha.
    Jag lade till den i en while-loop vilket även testar om det är en siffra i menyn, alltså inte lägre än 1 och inte större än 5.
 
-3. 
+3. FELET: Unhandled exception. System.FormatException (felet var i Program.cs)
+Felet är samma som i meny valet när man kunde skriva in en bokstav där den förväntade en siffra.
+Programmet kraschade nu när jag skrev in bokstäver där priset skulle inmatas på "Lägg till vara"
+HUR JAG LÖSTE: bytte int.Parse till int.Try.Parse för att testa för ett heltal utan krasch
+och såg till att priset måste vara ett positivt tal. 
+
+4.
+

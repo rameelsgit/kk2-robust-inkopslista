@@ -3,6 +3,7 @@ list.Load();
 
 while (true)
 {
+    // a menu that gives the user choices 
     Console.WriteLine();
     list.Print();
     Console.WriteLine();
@@ -13,15 +14,17 @@ while (true)
     Console.WriteLine("5. Avsluta");
     Console.Write("Välj: ");
 
+// the choice should be recived as a string. int choice is the number the user chooses to type 
     int choice = int.Parse(Console.ReadLine());
 
+// what the differents choices lead to
     if (choice == 1)
     {
         Console.Write("Namn: ");
         string name = Console.ReadLine();
         Console.Write("Pris: ");
         int price = int.Parse(Console.ReadLine());
-        list.Add(new Item(name, price));
+        list.Add(new Item(name, price)); // adds the name and price to the list
     }
     else if (choice == 2)
     {

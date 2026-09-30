@@ -4,6 +4,7 @@ class ShoppingList
     private List<Item> items = new List<Item>();
     private string path;
 
+    // this is a constructor 
     public ShoppingList(string path)
     {
         this.path = path;

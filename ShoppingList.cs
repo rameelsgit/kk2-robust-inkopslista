@@ -77,12 +77,13 @@ class ShoppingList
         try
         {
             File.WriteAllText(path, string.Join("\r\n", lines));
+            Console.WriteLine("Listan är sparad.");
         }
-        catch
+        // IOException to show a specific exception when its not able to save.
+        catch(IOException)
         {
+            Console.WriteLine("Listan kunde inte sparas.");
         }
-
-        Console.WriteLine("Listan är sparad.");
     }
 
     // Reads the file back into the list.

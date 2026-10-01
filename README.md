@@ -42,3 +42,9 @@
    När jag bytte namn på filen kraschade programmet eftersom kommandot "file.ReadAllLines" läser med item.txt och när den inte fanns gick det inte att köra.
    HUR JAG LÖSTE:
    Jag lade till en if-sats i load() metoden som kollar om filen existerar eller ej, finns den inte så avbryter den med "return;". Istället kör den programmet med en tom lista.
+
+   8. FELET: Catch var tom
+   Problemet var att catch skulle fånga upp när det inte gick att spara i save() metoden men eftersom den var tom säger den inte det och istället meddelar att listan är sparad.
+   HUR JAG LÖSTE:
+   Jag fyllde in catch med en Console.WriteLine som meddelar att filen inte kunde sparas och i catch parametrarna skrev jag (IOException) eftersom det undantaget verkade giltigt när jag sökte efter exceptions för filer/ej går att spara
+

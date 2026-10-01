@@ -30,7 +30,8 @@ class ShoppingList
     {
         int sum = 0;
 
-        for (int i = 1; i < items.Count; i++)
+        // changed int i = 1 till 0, because it was the reason it countet the total sum wrong
+        for (int i = 0; i < items.Count; i++)
         {
             sum += items[i].Price;
         }

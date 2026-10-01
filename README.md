@@ -32,3 +32,8 @@
    Anledningen var att index började på 1 istället för 0, alltså räknades inte vara nr 1 med. Den började räkna från vara 2.
    HUR JAG LÖSTE:
    Jag skrev om int i = 1 till int i = 0 i for-loopen.
+
+6. FELET: Sökvaran dök ej upp
+Sökvaran hittades inte om första bokstaven ej var uppercase.
+HUR JAG LÖSTE: 
+Jag löste detta genom att lägga till .ToLower på if-satsen så att det inte spelar någon roll hur användaren skriver in det.

@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 ShoppingList list = new ShoppingList("items.txt");
 list.Load();
 
@@ -28,18 +30,24 @@ while (true)
         Console.Write("Namn: ");
         string name = Console.ReadLine();
         Console.Write("Pris: ");
-        // changed int.parse to try.parse like previously to check for int without crassching
+        // changed int.parse to try.parse like previously to check for int without crasching
         // & made sure user cant input a negative int 
         int price;
         while (!int.TryParse(Console.ReadLine(), out price)|| price < 0 )
         {
-        Console.Write("Skriv priset med siffror eller positivt tal: ");
-        }        list.Add(new Item(name, price)); // adds the name and price to the list
+        Console.Write("Skriv priset med siffror eller ett positivt tal: ");
+        }        
+        list.Add(new Item(name, price)); // adds the name and price to the list
     }
     else if (choice == 2)
     {
         Console.Write("Nummer: ");
-        int number = int.Parse(Console.ReadLine());
+        int number;
+        // while loop makes sure you can only input a number, thats atleast 1 and it has to in the list.
+        while (!int.TryParse(Console.ReadLine(), out number) || number > list.Count || number < 1)
+        {
+        Console.Write("Skriv talet med siffror eller ett tal i listan: ");
+        }  
         list.RemoveAt(number);
     }
     else if (choice == 3)

@@ -4,6 +4,10 @@ class ShoppingList
     private List<Item> items = new List<Item>();
     private string path;
 
+    public int Count
+    {
+        get { return items.Count;}
+    }
     // this is a constructor 
     public ShoppingList(string path)
     {

@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 ShoppingList list = new ShoppingList("items.txt");
 list.Load();
 
+
 while (true)
 {
     // a menu that gives the user choices 

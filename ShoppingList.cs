@@ -88,6 +88,12 @@ class ShoppingList
     // Reads the file back into the list.
     public void Load()
     {
+        // i have added an if-statement that checks if the file exist.
+        // if it doesnt exist it runs the program with an empty list.
+        if (!File.Exists(path))
+        {
+            return; 
+        }
         string[] lines = File.ReadAllLines(path);
 
         foreach (string line in lines)

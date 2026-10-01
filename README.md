@@ -34,6 +34,11 @@
    Jag skrev om int i = 1 till int i = 0 i for-loopen.
 
 6. FELET: Sökvaran dök ej upp
-Sökvaran hittades inte om första bokstaven ej var uppercase.
-HUR JAG LÖSTE: 
-Jag löste detta genom att lägga till .ToLower på if-satsen så att det inte spelar någon roll hur användaren skriver in det.
+   Sökvaran hittades inte om första bokstaven ej var uppercase.
+   HUR JAG LÖSTE:
+   Jag löste detta genom att lägga till .ToLower på if-satsen så att det inte spelar någon roll hur användaren skriver in det.
+
+7. FELET: Unhandled exception. System.IO.FileNotFoundException
+   När jag bytte namn på filen kraschade programmet eftersom kommandot "file.ReadAllLines" läser med item.txt och när den inte fanns gick det inte att köra.
+   HUR JAG LÖSTE:
+   Jag lade till en if-sats i load() metoden som kollar om filen existerar eller ej, finns den inte så avbryter den med "return;". Istället kör den programmet med en tom lista.

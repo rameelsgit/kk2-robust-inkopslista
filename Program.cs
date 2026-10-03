@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 
 ShoppingList list = new ShoppingList("items.txt");
@@ -38,7 +39,15 @@ while (true)
         {
         Console.Write("Skriv priset med siffror eller ett positivt tal: ");
         }        
-        list.Add(new Item(name, price)); // adds the name and price to the list
+
+        try
+        {
+            list.Add(new Item(name, price)); // adds the name and price to the list            
+        }
+        catch (ArgumentException ex)
+        {
+            Console.WriteLine($"Fel: {ex.Message}");
+        }
     }
     else if (choice == 2)
     {

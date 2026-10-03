@@ -10,6 +10,17 @@ class Item
     {
         Name = name;
         Price = price;
+        if (name == null || name == "")
+        {
+            // if the name is empty this agrument exception is thrown
+            throw new ArgumentException("Namnet kan inte vara tomt");
+        }
+
+        if (price < 0)
+        {
+            // if the price is negative this exception is thrown
+            throw new ArgumentOutOfRangeException("Priset får inte vara negativt");
+        }
     }
 
     public override string ToString()

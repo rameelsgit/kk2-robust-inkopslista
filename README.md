@@ -1,5 +1,6 @@
 # Fel rapport
 
+## Del 1
 1. FELET:
    I ShoppingList.cs, System.IndexOutOfRangeException
    Programmet craschar när man kör dotnet run (load() metoden), eftersom .split(\n) hämtade med en tom sträng med "File.ReadAllText" så textfilen sparades alltid med en tom rad men det fanns inget pris och namn vilket gör att den kraschade.
@@ -47,4 +48,14 @@
    Problemet var att catch skulle fånga upp när det inte gick att spara i save() metoden men eftersom den var tom säger den inte det och istället meddelar att listan är sparad.
    HUR JAG LÖSTE:
    Jag fyllde in catch med en Console.WriteLine som meddelar att filen inte kunde sparas och i catch parametrarna skrev jag (IOException) eftersom det undantaget verkade giltigt när jag sökte efter exceptions för filer/ej går att spara
+
+## Del 2
+
+### FELET: Tomt namn och negativt pris
+   Programmet tillät att man kunde lägga till varor med ett tomt namn. Negativa priset hade jag redan fixat med en while loop i del 1. Men fattades att kasta ett undantag. Dessutom varnades användaren för ett tomt namn efter att de hade fyllt i priset.
+   HUR JAG LÖSTE:
+   Jag gjorde att Items kunde skydda sig själv genom att kasta ArgumentException för ett tomt namn och ArgumentOutOfRangeException för ett negativt pris inuti konstruktorn i Item.cs. 
+   I Program.cs lade jag till ett try-catch block när varan läggs till. 
+   Dock varnades användaren för ett tomt namn efter att de hade fyllt i priset också. Jag var då tvungen att lägga till while-loopar vid inmatningen så att varningen inte kom efter man hade tryckt enter på både namn och pris. While-loopen tvingar användaren att skriva rätt direkt.
+
 

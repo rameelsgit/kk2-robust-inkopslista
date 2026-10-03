@@ -31,6 +31,15 @@ while (true)
     {
         Console.Write("Namn: ");
         string name = Console.ReadLine();
+        // program will only continue when Name is no longer empty
+        while(name == null || name == "")
+        {
+            // lets user know that name cant be empty and gives another chance
+            Console.WriteLine("Namnet kan inte vara tomt");
+            Console.Write("Namn: ");
+            name = Console.ReadLine();
+        }
+
         Console.Write("Pris: ");
         // changed int.parse to try.parse like previously to check for int without crasching
         // & made sure user cant input a negative int 
@@ -44,6 +53,12 @@ while (true)
         {
             list.Add(new Item(name, price)); // adds the name and price to the list            
         }
+        // catch for negative price
+        catch (ArgumentOutOfRangeException ex)
+        {
+            Console.WriteLine($"Fel: {ex.Message}");
+        }
+        // catch for empty name
         catch (ArgumentException ex)
         {
             Console.WriteLine($"Fel: {ex.Message}");

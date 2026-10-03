@@ -1,7 +1,7 @@
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 
-ShoppingList list = new ShoppingList("items.txt");
+ShoppingList list = new ShoppingList("items.txt", 350); // amount for the budget
 list.Load();
 
 
@@ -60,6 +60,11 @@ while (true)
         }
         // catch for empty name
         catch (ArgumentException ex)
+        {
+            Console.WriteLine($"Fel: {ex.Message}");
+        }
+        // catch for my created budget exceeding exception
+        catch (BudgetExceededException ex) 
         {
             Console.WriteLine($"Fel: {ex.Message}");
         }

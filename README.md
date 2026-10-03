@@ -1,61 +1,62 @@
-# Fel rapport
+# Del 1
 
-## Del 1
-1. FELET:
-   I ShoppingList.cs, System.IndexOutOfRangeException
+## Felrapport
+
+### 1. FELET:
+   I ShoppingList.cs, System.IndexOutOfRangeException<br>
    Programmet craschar när man kör dotnet run (load() metoden), eftersom .split(\n) hämtade med en tom sträng med "File.ReadAllText" så textfilen sparades alltid med en tom rad men det fanns inget pris och namn vilket gör att den kraschade.
-   HUR JAG LÖSTE:
+   <br>HUR JAG LÖSTE:<br>
    Jag löste detta genom att använda "File.ReadAllLines" vilket delar upp raderna automatiskt och kan hoppa över tomma rader. Jag tog bort FileReadAllText() och Spit(\n).
 
-2. FELET:
-   Unhandled exception. System.FormatException
+### 2. FELET:
+   Unhandled exception. System.FormatException<br>
    Programmet kraschar när man skiver in en bokstav i meny valet.
-   HUR JAG LÖSTE:
+   <br>HUR JAG LÖSTE:<br>
    Jag bytte till int.TryParse eftersom den testar om det är ett heltal utan att krascha.
    Jag lade till den i en while-loop vilket även testar om det är en siffra i menyn, alltså inte lägre än 1 och inte större än 5.
 
-3. FELET:
-   Unhandled exception. System.FormatException (felet var i Program.cs)
+### 3. FELET:
+   Unhandled exception. System.FormatException (felet var i Program.cs)<br>
    Felet är samma som i meny valet när man kunde skriva in en bokstav där den förväntade en siffra.
    Programmet kraschade nu när jag skrev in bokstäver där priset skulle inmatas på "Lägg till vara"
-   HUR JAG LÖSTE:
+   <br>HUR JAG LÖSTE:<br>
    bytte int.Parse till int.Try.Parse i en while-loop för att testa för ett heltal utan krasch
    och såg till att priset måste vara ett positivt tal.
 
-4. FELET:
-   System.FormatException (felet var i Program.cs)
+### 4. FELET:
+   System.FormatException (felet var i Program.cs)<br>
    Problemet var att man kunde skriva in bokstäver när man ville att en vara skulle tas bort.
    Man kunde även ange en siffra som inte fanns i listan av varor.
-   HUR JAG LÖSTE:
+   <br>HUR JAG LÖSTE:<br>
    Först gjorde jag samma ändring som tidigare där jag ändrade till en try.Parse i en while-loop som kan checka ett heltal utan att krasha. Andra steget var att lägga till en Count egenskap i ShoppingList.cs den kan läsa hur många varor det finns i listan. I while-loopen lade jag till vilkoren att siffran är minst 1 och att siffran måste finnas i Items listan.
 
-5. FELET: Programmet skrev ut fel totalsumma.
+### 5. FELET: Programmet skrev ut fel totalsumma.
    Anledningen var att index började på 1 istället för 0, alltså räknades inte vara nr 1 med. Den började räkna från vara 2.
-   HUR JAG LÖSTE:
+   <br>HUR JAG LÖSTE:<br>
    Jag skrev om int i = 1 till int i = 0 i for-loopen.
 
-6. FELET: Sökvaran dök ej upp
+### 6. FELET: Sökvaran dök ej upp
    Sökvaran hittades inte om första bokstaven ej var uppercase.
-   HUR JAG LÖSTE:
+   <br>HUR JAG LÖSTE:<br>
    Jag löste detta genom att lägga till .ToLower på if-satsen så att det inte spelar någon roll hur användaren skriver in det.
 
-7. FELET: Unhandled exception. System.IO.FileNotFoundException
+### 7. FELET: Unhandled exception. System.IO.FileNotFoundException
    När jag bytte namn på filen kraschade programmet eftersom kommandot "file.ReadAllLines" läser med item.txt och när den inte fanns gick det inte att köra.
-   HUR JAG LÖSTE:
+   <br>HUR JAG LÖSTE:<br>
    Jag lade till en if-sats i load() metoden som kollar om filen existerar eller ej, finns den inte så avbryter den med "return;". Istället kör den programmet med en tom lista.
 
-   8. FELET: Catch var tom
+### 8. FELET: Catch var tom
    Problemet var att catch skulle fånga upp när det inte gick att spara i save() metoden men eftersom den var tom säger den inte det och istället meddelar att listan är sparad.
-   HUR JAG LÖSTE:
+   <br>HUR JAG LÖSTE:<br>
    Jag fyllde in catch med en Console.WriteLine som meddelar att filen inte kunde sparas och i catch parametrarna skrev jag (IOException) eftersom det undantaget verkade giltigt när jag sökte efter exceptions för filer/ej går att spara
 
-## Del 2
+# Del 2
 
-### FELET: Tomt namn och negativt pris
-   Programmet tillät att man kunde lägga till varor med ett tomt namn. Negativa priset hade jag redan fixat med en while loop i del 1. Men fattades att kasta ett undantag. Dessutom varnades användaren för ett tomt namn efter att de hade fyllt i priset.
-   HUR JAG LÖSTE:
-   Jag gjorde att Items kunde skydda sig själv genom att kasta ArgumentException för ett tomt namn och ArgumentOutOfRangeException för ett negativt pris inuti konstruktorn i Item.cs. 
-   I Program.cs lade jag till ett try-catch block när varan läggs till. 
-   Dock varnades användaren för ett tomt namn efter att de hade fyllt i priset också. Jag var då tvungen att lägga till while-loopar vid inmatningen så att varningen inte kom efter man hade tryckt enter på både namn och pris. While-loopen tvingar användaren att skriva rätt direkt.
+## Designval
 
+Jag valde att skapa och kasta ett undantag för att hantera budgettaket istället för att returnera false.
+Eftersom att vi i uppgiften redan skulle använda oss av exceptions i Items klassen ville jag fortsätta med det men den större anledningen är att jag ville fortsätta öva på det.
+
+Det var även roligt att kunna använda sig av "ex" variabeln och kunna kalla på ett meddelande.
+Undantaget jag använde skapade jag själv som exemplet i bloggen. Att skapa ett eget undantag för detta problemet gör att det blir tydligt för vad som är fel. BudgetExceededException är ett tydligt exception, jag tyckte att andra tillgängliga exceptions inte känndes lika tydliga. Det var liknande i felet där man skulle fylla in den tomma "catchen". Jag valde IOException men det var inte självklart för vad det betydde, jag förstod undantaget endast efter att ha googlat och läst om vad som kunde användas i den situationen. 
 
